@@ -9,7 +9,7 @@ export default ({ context }) => {
   return (
     <div className="header">
       <div className="bounds">
-        <h1 className="header--logo">Recipe Share</h1>
+        <h1 className="header--logo">Course App</h1>
         <nav>
           {authUser ? (
             <React.Fragment>

@@ -8,24 +8,24 @@ class DeleteCourse extends React.Component {
     super(props);
     this.state = {
       course: [],
-      authenticatedUser: Cookies.getJSON("authenticatedUser") || null
+      authenticatedUser: Cookies.getJSON("authenticatedUser") || null,
     };
   }
 
   componentDidMount() {
     fetch(
-      `http://localhost:5000/api/courses/${this.props.match.params.id}
+      `https://tulip-grandiose-telescope.glitch.me/${this.props.match.params.id}
       `
     )
-      .then(response => response.json())
-      .then(responseData => {
+      .then((response) => response.json())
+      .then((responseData) => {
         this.setState({
           course: responseData.course,
           user: responseData.course.user,
           title: responseData.course.title,
           description: responseData.course.description,
           estimatedTime: responseData.course.estimatedTime,
-          materialsNeeded: responseData.course.materialsNeeded
+          materialsNeeded: responseData.course.materialsNeeded,
         });
       });
 
@@ -43,7 +43,7 @@ class DeleteCourse extends React.Component {
     console.log(course);
     context.data
       .deleteCourse(course, authUser.emailAddress, authUser.password)
-      .then(error => {
+      .then((error) => {
         if (error.length) {
           this.setState({ error });
           console.log(error);
@@ -55,7 +55,7 @@ class DeleteCourse extends React.Component {
             });
         }
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err && err.length);
         this.props.history.push("/error");
       });

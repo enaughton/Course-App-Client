@@ -1,6 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
+import config from "../config.js";
+const path = `courses/`;
+const url = config.apiBaseUrl;
 
 const ReactMarkdown = require("react-markdown");
 class CourseDetail extends React.Component {
@@ -9,17 +12,17 @@ class CourseDetail extends React.Component {
     this.state = {
       course: [],
       user: [],
-      authenticatedUser: Cookies.getJSON("authenticatedUser") || null
+      authenticatedUser: Cookies.getJSON("authenticatedUser") || null,
     };
   }
   // This CourseDetail Component Displays the Course Data returned from the API
   componentDidMount() {
-    fetch(`http://localhost:5000/api/courses/${this.props.match.params.id}`)
-      .then(response => response.json())
-      .then(responseData => {
+    fetch(url + path + this.props.match.params.id)
+      .then((response) => response.json())
+      .then((responseData) => {
         this.setState({
           course: responseData.course,
-          user: responseData.course.user
+          user: responseData.course.user,
         });
       });
   }

@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import config from "../config.js";
+const path = "/courses";
+const url = config.apiBaseUrl;
 
 // Courses is the Component is used to Display All the Courses that are returned from the API.
-
 class Courses extends React.Component {
   constructor() {
     super();
@@ -10,7 +12,7 @@ class Courses extends React.Component {
   }
 
   componentDidMount() {
-    fetch("http://localhost:5000/api/courses")
+    fetch(url + path)
       .then((response) => response.json())
       .then((responseData) => {
         this.setState({ course: responseData.course });

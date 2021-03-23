@@ -17,7 +17,7 @@ class UpdateCourse extends React.Component {
       estimatedTime: "",
       materialsNeeded: "",
       errors: [],
-      value: ""
+      value: "",
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -25,16 +25,18 @@ class UpdateCourse extends React.Component {
   }
 
   componentDidMount() {
-    fetch(`http://localhost:5000/api/courses/${this.props.match.params.id}`)
-      .then(response => response.json())
-      .then(responseData => {
+    fetch(
+      `https://tulip-grandiose-telescope.glitch.me/api/courses/${this.props.match.params.id}`
+    )
+      .then((response) => response.json())
+      .then((responseData) => {
         this.setState({
           course: responseData.course.id,
           user: responseData.course.user,
           title: responseData.course.title,
           description: responseData.course.description,
           estimatedTime: responseData.course.estimatedTime,
-          materialsNeeded: responseData.course.materialsNeeded
+          materialsNeeded: responseData.course.materialsNeeded,
         });
       });
   }
@@ -46,7 +48,7 @@ class UpdateCourse extends React.Component {
     const name = target.name;
 
     this.setState({
-      [name]: value
+      [name]: value,
     });
   }
 
@@ -61,7 +63,7 @@ class UpdateCourse extends React.Component {
       title,
       description,
       estimatedTime,
-      materialsNeeded
+      materialsNeeded,
     } = this.state;
 
     const update = {
@@ -69,23 +71,23 @@ class UpdateCourse extends React.Component {
       title,
       description,
       estimatedTime,
-      materialsNeeded
+      materialsNeeded,
     };
     context.data
       .updateCourse(update, authUser.emailAddress, authUser.password)
-      .then(errors => {
+      .then((errors) => {
         if (errors.length) {
           console.log(errors.length, errors);
           this.setState(() => {
             return {
-              errors: [errors]
+              errors: [errors],
             };
           });
         } else {
           this.props.history.push(`/courses/${this.state.course}`);
         }
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err && err.length);
         this.props.history.push("/error");
       });
