@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import Cookies from "js-cookie";
 import config from "../config.js";
-const path = `courses/`;
+const path = `/courses/`;
 const url = config.apiBaseUrl;
 
 const ReactMarkdown = require("react-markdown");
