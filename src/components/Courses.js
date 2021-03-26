@@ -1,8 +1,8 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import config from "../config.js";
-const path = "/courses/";
-const url = config.apiBaseUrl;
+// import config from "../config.js";
+// const path = "/courses/";
+// const url = config.apiBaseUrl;
 
 // Courses is the Component is used to Display All the Courses that are returned from the API.
 class Courses extends React.Component {
@@ -12,7 +12,7 @@ class Courses extends React.Component {
   }
 
   componentDidMount() {
-    fetch(url + path)
+    fetch("https://tulip-grandiose-telescope.glitch.me/api/courses")
       .then((response) => response.json())
       .then((responseData) => {
         this.setState({ course: responseData.course });
