@@ -36,7 +36,7 @@ class Courses extends React.Component {
           ))}
 
           <div className="grid-33">
-            <a
+            <Link
               className="course--module course--add--module"
               href="/courses/create"
             >
@@ -53,7 +53,7 @@ class Courses extends React.Component {
                 </svg>
                 New Course
               </h3>
-            </a>
+            </Link>
           </div>
         </div>
       </div>
