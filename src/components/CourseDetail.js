@@ -34,64 +34,64 @@ class CourseDetail extends React.Component {
       <div>
         <div className="actions--bar">
           <div className="bounds">
-            <div className="grid-100">
+            <div className="flex">
               {authUser && authUser.userId === this.state.user.id ? (
                 <React.Fragment>
-                  <span>
-                    <Link
-                      className="button"
-                      to={`/courses/${this.props.match.params.id}/update`}
-                    >
-                      {" "}
-                      Update Course{" "}
-                    </Link>
-                    <Link
-                      className="button"
-                      to={`/courses/${this.props.match.params.id}/delete`}
-                    >
-                      Delete Course
-                    </Link>
+                  <span className="flex">
+                    <button className="flex m-4  text-white justify-center p-4 bg-indigo-900">
+                      <Link
+                        className="button"
+                        to={`/courses/${this.props.match.params.id}/update`}
+                      >
+                        {" "}
+                        Update Course{" "}
+                      </Link>
+                    </button>
+                    <button className="flex m-4 justify-center p-4 bg-blue-500">
+                      <Link
+                        className="button"
+                        to={`/courses/${this.props.match.params.id}/delete`}
+                      >
+                        Delete Course
+                      </Link>
+                    </button>
                   </span>
                 </React.Fragment>
               ) : (
                 <React.Fragment></React.Fragment>
               )}
-
-              <a className="button button-secondary" href="/">
-                Return to List
-              </a>
+              <button className="flex m-4 justify-center text-white p-4 bg-gray-500">
+                <a className="button button-secondary" href="/">
+                  Return to List
+                </a>
+              </button>
             </div>
           </div>
         </div>
-        <div className="bounds course--detail">
-          <div className="grid-66">
+        <div className="flex justify-center bounds course--detail">
+          <div className="max-w-max">
             <div className="course--header">
-              <h4 className="course--label">Course</h4>
-              <h3 className="course--title">{this.state.course.title}</h3>
-              <p>
+              <h3 className="flex text-black dark:text-gray-100  justify-center text-justify font-semibold">
+                {this.state.course.title}
+              </h3>
+              <p className="flex text-black dark:text-gray-100  justify-center text-justify font-semibold">
                 By {this.state.user.firstName} {this.state.user.lastName}
               </p>
             </div>
-            <div className="course--description">
-              <ReactMarkdown source={this.state.course.description} />
-            </div>
-          </div>
-          <div className="grid-25 grid-right">
-            <div className="course--stats">
-              <ul className="course--stats--list">
-                <li className="course--stats--list--item">
-                  <h4>Estimated Time</h4>
-                  <h3>
-                    <ReactMarkdown source={this.state.course.estimatedTime} />
-                  </h3>
-                </li>
-                <li className="course--stats--list--item">
-                  <h4>Materials Needed</h4>
-                  <ul>
-                    <ReactMarkdown source={this.state.course.materialsNeeded} />
-                  </ul>
-                </li>
-              </ul>
+            <h4 className="m-2 flex text-black dark:text-gray-100 justify-start text-justify font-semibold">
+              {" "}
+              Estimated Time: {this.state.course.estimatedTime}
+            </h4>
+            <div className="flex m-2 p-4 text-black dark:text-gray-100  border border-gray-500 text-justify font-semibold">
+              <div className="  w-2/3 p-4 border border-gray-500 text-lg">
+                <ReactMarkdown source={this.state.course.description} />
+              </div>
+              <div className="flex m-4 p-4 w-2/5 border border-red-500">
+                <h4 className="flex">Materials Needed</h4>
+                <p className="flex p-4 ">
+                  <ReactMarkdown source={this.state.course.materialsNeeded} />
+                </p>
+              </div>
             </div>
           </div>
         </div>

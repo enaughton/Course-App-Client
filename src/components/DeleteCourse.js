@@ -1,5 +1,8 @@
 import React from "react";
 import Cookies from "js-cookie";
+import config from "../config.js";
+const path = `/courses/`;
+const url = config.apiBaseUrl;
 
 // Delete Course is a Component to Delete a Course, Only the User that Owns the Course should be allowed
 
@@ -13,10 +16,7 @@ class DeleteCourse extends React.Component {
   }
 
   componentDidMount() {
-    fetch(
-      `https://tulip-grandiose-telescope.glitch.me/${this.props.match.params.id}
-      `
-    )
+    fetch(url + path + this.props.match.params.id)
       .then((response) => response.json())
       .then((responseData) => {
         this.setState({
@@ -40,7 +40,6 @@ class DeleteCourse extends React.Component {
 
     const { course } = this.state;
 
-    console.log(course);
     context.data
       .deleteCourse(course, authUser.emailAddress, authUser.password)
       .then((error) => {
@@ -64,8 +63,6 @@ class DeleteCourse extends React.Component {
   }
 
   render() {
-    const { course } = this.state;
-    console.log(course);
     return (
       <div>
         <h1>Are you sure you want to Delete this Course?</h1>

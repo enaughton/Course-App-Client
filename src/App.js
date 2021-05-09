@@ -1,10 +1,10 @@
 // Imports of Components
-
 import React from "react";
 import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import withContext from "./Context";
 import PrivateRoute from "./PrivateRoute";
-import "./global.css";
+// import "./global.css";
+import "./index.css";
 import Header from "./components/Header";
 import Authenticated from "./components/Authenticated";
 import Courses from "./components/Courses";

@@ -2,6 +2,8 @@ import React from "react";
 
 import Form from "./Form";
 
+import "../index.css";
+
 //This Component Creates a Course, a User HAS to be Logged in.
 
 class CreateCourse extends React.Component {
@@ -13,7 +15,7 @@ class CreateCourse extends React.Component {
       title: "",
       description: "",
       estimatedTime: "",
-      materialsNeeded: ""
+      materialsNeeded: "",
     };
 
     this.handleInputChange = this.handleInputChange.bind(this);
@@ -26,7 +28,7 @@ class CreateCourse extends React.Component {
     const name = target.name;
 
     this.setState({
-      [name]: value
+      [name]: value,
     });
   }
 
@@ -42,25 +44,25 @@ class CreateCourse extends React.Component {
       title,
       description,
       estimatedTime,
-      materialsNeeded
+      materialsNeeded,
     };
     console.log(course);
 
     context.data
       .createCourse(course, authUser.emailAddress, authUser.password)
-      .then(errors => {
+      .then((errors) => {
         if (errors.length) {
           console.log(errors.length, errors);
           this.setState(() => {
             return {
-              errors: [errors]
+              errors: [errors],
             };
           });
         } else {
           this.props.history.push(`/`);
         }
       })
-      .catch(err => {
+      .catch((err) => {
         console.log(err && err.length);
         this.props.history.push("/error");
       });
@@ -90,8 +92,8 @@ class CreateCourse extends React.Component {
                       <div>
                         <input
                           id="title"
+                          label="Standard"
                           name="title"
-                          type="text"
                           className="input-title course--title--input"
                           placeholder="Course title..."
                           value={this.state.title}
@@ -102,14 +104,15 @@ class CreateCourse extends React.Component {
                     </div>
                     <div className="course--description">
                       <div>
-                        <textarea
+                        <textfield
                           id="description"
                           name="description"
                           className=""
                           placeholder="Course description..."
+                          multiline={true}
                           value={this.state.description}
                           onChange={this.handleInputChange}
-                        ></textarea>
+                        />
                       </div>
                     </div>
                   </div>
@@ -133,14 +136,15 @@ class CreateCourse extends React.Component {
                         <li className="course--stats--list--item">
                           <h4>Materials Needed</h4>
                           <div>
-                            <textarea
+                            <textfield
                               id="materialsNeeded"
                               name="materialsNeeded"
                               className=""
+                              multiline={true}
                               placeholder="List materials..."
                               value={this.state.materialsNeeded}
                               onChange={this.handleInputChange}
-                            ></textarea>
+                            />
                           </div>
                         </li>
                       </ul>
